@@ -52,7 +52,7 @@ Variabel-variabel yang dapat terdampak adalah semua variabel yang memengaruhi ta
 
 
 4. Jelaskan perbedaan antara const dengan final.
-const:
+const
 - const digunakan untuk mendefinisikan nilai konstan yang sudah ditentukan saat kompilasi dan tidak akan pernah berubah.
 - Semua variabel yang menggunakan const harus diberi nilai pada saat didefinisikan, dan nilai tersebut bersifat immutable (tidak bisa diubah).
 - const sering digunakan dalam konteks UI untuk widget yang tidak berubah, sehingga lebih efisien.
