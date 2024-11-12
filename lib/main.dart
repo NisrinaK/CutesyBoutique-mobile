@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cutesy_boutique/menu.dart';
+import 'package:cutesy_boutique/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-
-class ItemHomepage {
-  final String name; // Nama tombol
-  final IconData icon; // Ikon tombol
-  final Color color; // Warna tombol
-
-  ItemHomepage(this.name, this.icon, this.color); // Konstruktor
-}
+import 'package:cutesy_boutique/widgets/left_drawer.dart';
+import 'package:cutesy_boutique/widgets/product_card.dart';
 
 class InfoCard extends StatelessWidget {
-  final String title; // Judul kartu informasi
-  final String content; // Isi kartu informasi
+  final String title;
+  final String content;
 
   const InfoCard({super.key, required this.title, required this.content});
 
@@ -36,56 +30,13 @@ class InfoCard extends StatelessWidget {
   }
 }
 
-class ItemCard extends StatelessWidget {
-  final ItemHomepage item; // Tombol CutesyBoutique yang akan ditampilkan
-
-  const ItemCard(this.item, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 2.0,
-      color: item.color,
-      child: InkWell(
-        onTap: () {
-          // Menampilkan Snackbar sesuai tombol yang ditekan
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text("Kamu telah menekan tombol ${item.name}"),
-              duration: const Duration(seconds: 2),
-            ),
-          );
-        },
-        child: Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(item.icon, size: 40.0, color: Colors.white), // Menampilkan ikon
-              const SizedBox(height: 8.0),
-              Text(
-                item.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
-  final String npm = '2306275456'; // NPM
-  final String name = 'Nisrina Kamilya Nisyya'; // Nama
-  final String className = 'PBP A'; // Kelas
+  final String npm = '2306275456';
+  final String name = 'Nisrina Kamilya Nisyya';
+  final String className = 'PBP A';
 
-  // Daftar item untuk tombol-tombol di halaman CutesyBoutique
   final List<ItemHomepage> items = [
     ItemHomepage("Lihat Daftar Produk", Icons.list, Colors.pink.shade200),
     ItemHomepage("Tambah Produk", Icons.add, Colors.pink.shade300),
@@ -94,9 +45,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Scaffold menyediakan struktur dasar halaman dengan AppBar dan body.
     return Scaffold(
-      // AppBar untuk judul "CutesyBoutique" di bagian atas.
       appBar: AppBar(
         title: const Text(
           'CutesyBoutique',
@@ -107,13 +56,12 @@ class MyHomePage extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
-      // Body halaman dengan padding di sekelilingnya.
+      drawer: const LeftDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Row untuk menampilkan 3 InfoCard secara horizontal.
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -122,25 +70,20 @@ class MyHomePage extends StatelessWidget {
                 InfoCard(title: 'Class', content: className),
               ],
             ),
-
             const SizedBox(height: 16.0),
-
             Center(
               child: Column(
                 children: [
-                  // Teks sambutan dengan gaya tebal.
                   const Padding(
                     padding: EdgeInsets.only(top: 16.0),
                     child: Text(
-                      'Welcome to CutesyBoutique',
+                      'Welcome to CutesyBoutique!',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18.0,
                       ),
                     ),
                   ),
-
-                  // Grid 3 kolom untuk menampilkan ItemCard
                   GridView.count(
                     primary: true,
                     padding: const EdgeInsets.all(20),
